@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-jatxm22#c+3)%3=$ebvfaoea6728=1yo=sv(0=40qd%dd(&m_l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["139.162.203.250"]
+ALLOWED_HOSTS = ["139.162.203.250", "127.0.0.1"] #1 linode server, 2 localhost
 
 
 # Application definition
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["139.162.203.250"]
 INSTALLED_APPS = [
     #moje apps
     'home',
+    'kostka',
 
     #django apps preinstall
     'django.contrib.admin',
