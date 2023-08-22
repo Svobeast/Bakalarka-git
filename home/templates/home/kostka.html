@@ -3,14 +3,14 @@
 {% block content%}
     <h1>nazev</h1>
     <p>
-        funguje too napuul :/<br>
+        text<br>
     </p>
         <div>
         Kolikrát chceš hodit kostkou?<br>
         <form action="" method="post">         
             {% csrf_token %}
             {{form.as_p}}
-            <button type="submit" name="Vypocitat" value="Vypocitat">"Vypocitat"</button>
+            <button type="submit" name="Vypocitat" value="Vypocitat">Vypočítat</button>
         </form>
         
 
