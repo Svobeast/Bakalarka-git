@@ -18,5 +18,5 @@ def home_view(request):
         else:
             print('Error:', result.stderr)  # Debug statement
         
-    return render(request,'base.html', {'data':out})
+    return render(request,'home/kostka.html', {'data':out})
     

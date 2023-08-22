@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %}
+
+{% block content%}
+    <h1>nazev</h1>
+    <p>
+        funguje too napuul :/<br>
+    </p>
+        <div>
+        Kolikrát chceš hodit kostkou?<br>
+        <form action="{% url 'home_view' %}" method="post">
+            {% csrf_token %}
+            Input
+            <input type="number" name="pocet" required><br>            
+        
+
+            <input type="submit" value="Vypocitat">
+
+        </form>
+        
+       
+        
+        {% if data %}
+        <button onClick="window.location.href=window.location.href">Smazat</button>
+        <pre>{{ data }}</pre>
+        {% endif %}
+
+        <p>Debug: {{ data }}</p> 
+        
+    </div>
+
+{% endblock %}
+
