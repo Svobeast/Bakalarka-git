@@ -1,0 +1,14 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    {% for item in data %}
+        {%if item.value == 0 %}
+            
+        {%else%}
+            {{item.name}} padla: {{item.value}} krát</br>
+        {%endif%}
+    {%endfor%}
+
+    <a href = "znovu">Haloooooooo</a>
+
+{% endblock %}

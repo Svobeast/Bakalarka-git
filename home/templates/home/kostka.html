@@ -7,24 +7,13 @@
     </p>
         <div>
         Kolikrát chceš hodit kostkou?<br>
-        <form action="{% url 'home_view' %}" method="post">
+        <form action="" method="post">         
             {% csrf_token %}
-            Input
-            <input type="number" name="pocet" required><br>            
-        
-
-            <input type="submit" value="Vypocitat">
-
+            {{form.as_p}}
+            <button type="submit" name="Vypocitat" value="Vypocitat">"Vypocitat"</button>
         </form>
         
-       
-        
-        {% if data %}
-        <button onClick="window.location.href=window.location.href">Smazat</button>
-        <pre>{{ data }}</pre>
-        {% endif %}
 
-        <p>Debug: {{ data }}</p> 
         
     </div>
 

@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ["139.162.203.250", "127.0.0.1"] #1 linode server, 2 localhost
 
 INSTALLED_APPS = [
     #moje apps
-    'home',
+    'home.apps.HomeConfig',
 
     #django apps preinstall
     'django.contrib.admin',
