@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% block title %}Home{%endblock%}
+{% block content %}
+<p>Home</p>
+
+    Vyber si data:
+    <form action= "", method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit", value="zvolit", name = "Zvolit">Zvolit</button>
+    </form>
+{% endblock %}
