@@ -30,7 +30,7 @@ def pocasiP(response):
         except Exception as e:
             # Handle any other exceptions that may occur while reading the Excel file
             df = None
-            print("2")
+            print(e)
     else:
         # Handle the case where the file doesn't exist
         df = None
