@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5v1a^$n@)&elqr%%m=0$$$)$44a)*@v!sqpd@s*&^34y)zx7!=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["139.162.203.250", "127.0.0.1"] #1 linode server, 2 localhost
 
 
 # Application definition
