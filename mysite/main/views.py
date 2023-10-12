@@ -69,7 +69,6 @@ def AkPocasi(response):
             den = cas_temp.strftime("%d.%m.%Y")
             mesto = soup.find(name="h1", class_="mb-0").text.strip()
             mesto = mesto.replace("Předpověď počasí", "").strip()
-            print(mesto)
             teplota = soup.find(name="div", class_="alfa mb-1").string.strip()
             zbytek = soup.findAll("span", class_="strong text-black")
             pocit = zbytek[0].string.strip()
