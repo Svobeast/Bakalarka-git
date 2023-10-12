@@ -67,9 +67,7 @@ def AkPocasi(response):
             cas_temp = datetime.now()
             cas = cas_temp.strftime("%H:%M")
             den = cas_temp.strftime("%d.%m.%Y")
-            Tmesto = soup.find(name="p").string.strip()
-            Tmesto = Tmesto.split(" ", 1)
-            mesto = Tmesto[0]
+            mesto = soup.find(name="h1").text.strip()
             teplota = soup.find(name="div", class_="alfa mb-1").string.strip()
             zbytek = soup.findAll("span", class_="strong text-black")
             pocit = zbytek[0].string.strip()
