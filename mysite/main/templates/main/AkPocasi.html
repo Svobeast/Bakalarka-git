@@ -1,0 +1,32 @@
+{% extends "main/base.html" %}
+{% block title %}Aktuální Počasí{%endblock%}
+
+{% block content%}
+<table>
+    <thead>
+        <tr>
+            {% if not df.empty %}
+                {% for column in df.columns %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% if not df.empty %}
+            {% for row in df.values %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="2">Excel file not found or could not be loaded.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}
