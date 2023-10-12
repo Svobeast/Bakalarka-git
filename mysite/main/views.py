@@ -43,6 +43,7 @@ def AkPocasi(response):
     stranky = ["https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/blatna-15/",
                "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/ceske-budejovice-54/",
                "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/cesky-krumlov-58/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/jindrichuv-hradec-157/"
                "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/pisek-307/"]
     #vytvoreni noveho filu
     existuje = os.path.exists("main/scraping/AkPocasi.csv")
