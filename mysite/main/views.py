@@ -113,16 +113,39 @@ def AkPocasi(response):
 
     return render(response, "main/AkPocasi.html", {"df":df})
 
-"""def nbl(response):
-    zadost = requests.get("https://nbl.basketball/statistiky?y=2022&p2=0&zak=1#tab-pane-three")
+def Aknbl(response):
+    zadost = requests.get("https://nbl.basketball/tabulka")
     web = zadost.text
 
     soup = BeautifulSoup(web, "html.parser")
 
-    with open("nbl.txt", "w", encoding="utf-8") as new_file:            WIP
-        new_file.write(str(soup))
+    with open("main/scraping/Aknbl.csv", "w", encoding="utf-8") as new_file:
+        hlavicka = soup.find_all("table")[0].find("tr").get_text(",", strip=True) #získání hlavičky - prvni tabulka na strance a jeji prvni tr
+        hlavicka = hlavicka.replace(",posledních 5 zápasů,Odkaz na graf","")
+        new_file.write(str(hlavicka))
 
-    with open("tabulka.txt", "w", encoding="utf-8") as new_file:
-        chci = soup.findAll("table")[1] #druha tabulka na strance
-        new_file.write(str(chci))
-    """
+        
+        for i in range(1, len(soup.find_all("table")[0].find_all("tr"))):   #ziskani obsahu - prvni tabulka na strance a jeji zbyvajici tr
+
+            obsah = soup.find_all("table")[0].find_all("tr")[i].get_text(",", strip=True)
+            obsah = obsah.replace("Posun v tabulce,", "")
+            obsah = obsah.replace(",Popis ikonky\"", "")
+            new_file.write("\n")
+            new_file.write(str(obsah))
+
+    DoE = pd.read_csv("main/scraping/Aknbl.csv")
+    DoE.to_excel("main/scraping/Aknbl.xlsx", "Aktuální tabulka NBL", index=False)
+
+    if os.path.isfile("main/scraping/Aknbl.xlsx"):
+        try:
+            df = pd.read_excel("main/scraping/Aknbl.xlsx")
+        except Exception as e:
+            # Handle any other exceptions that may occur while reading the Excel file
+            df = None
+            print(e)
+    else:
+        # Handle the case where the file doesn't exist
+        df = None
+        print("Soubor neni")
+
+    return render(response, "main/Aknbl.html", {"df":df})
