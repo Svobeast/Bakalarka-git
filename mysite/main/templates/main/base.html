@@ -1,14 +1,49 @@
+{%load static%}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>{%block title %}Stahni si data{%endblock%}    </title>
+    <link rel="stylesheet", href="{% static 'main/base.css' %}">
 </head>
 <body>
-    
+    <div class="topbar">
+        
+
+    </div>
     <div>
-        {% block content %}
-        <p>Base</p>
+        {% block tabulka %}
+        <table>
+            <thead>
+                <tr>
+                    {% if not df.empty %}
+                        {% for column in df.columns %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% if not df.empty %}
+                    {% for row in df.values %}
+                        <tr>
+                            {% for cell in row %}
+                                <td>{{ cell }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="2">Excel file not found or could not be loaded.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
         {% endblock %}
+    </div>
+    <div>
+        {%block content%}
+        {%endblock%}
     </div>
 </body>
 
