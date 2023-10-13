@@ -42,10 +42,24 @@ def pocasiP(response):
 
 def AkPocasi(response):
     stranky = ["https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/blatna-15/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/branisov-1625/",
                "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/ceske-budejovice-54/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/ceske-velenice-55/",
                "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/cesky-krumlov-58/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/dacice-60/",
                "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/jindrichuv-hradec-157/",
-               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/pisek-307/"]
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/majdalena-2636/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/orlik-nad-vltavou-4330/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/pisek-307/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/prachatice-325/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/putim-4342/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/rozmberk-nad-vltavou-1759/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/strakonice-386/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/spicak-7015/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/vrcovice-4357/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/zahori-2682/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/zlata-koruna-1769/",
+               "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/zabovresky-1724/"]
     #vytvoreni noveho filu
     existuje = os.path.exists("main/scraping/AkPocasi.csv")
     print(existuje)
