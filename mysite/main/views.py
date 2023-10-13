@@ -149,3 +149,38 @@ def Aknbl(response):
         print("Soubor neni")
 
     return render(response, "main/Aknbl.html", {"df":df})
+
+def HisNbl(response):
+    zadost = requests.get("https://nbl.basketball/tabulka")
+    web = zadost.text
+
+    soup = BeautifulSoup(web, "html.parser")
+
+    with open("main/scraping/HisNbl.csv", "w", encoding="utf-8") as new_file:
+        hlavicka = soup.find_all("table")[1].find("tr").get_text(",", strip=True) #získání hlavičky - druha tabulka na strance a jeji prvni tr
+        hlavicka = hlavicka.replace(",Odkaz na graf","")
+        new_file.write(str(hlavicka))
+
+        
+        for i in range(1, len(soup.find_all("table")[1].find_all("tr"))):   #ziskani obsahu - druha tabulka na strance a jeji zbyvajici tr
+
+            obsah = soup.find_all("table")[1].find_all("tr")[i].get_text(",", strip=True)
+            new_file.write("\n")
+            new_file.write(str(obsah))
+
+    DoE = pd.read_csv("main/scraping/HisNbl.csv")
+    DoE.to_excel("main/scraping/HisNbl.xlsx", "Historická tabulka NBL", index=False)
+
+    if os.path.isfile("main/scraping/HisNbl.xlsx"):
+        try:
+            df = pd.read_excel("main/scraping/HisNbl.xlsx")
+        except Exception as e:
+            # Handle any other exceptions that may occur while reading the Excel file
+            df = None
+            print(e)
+    else:
+        # Handle the case where the file doesn't exist
+        df = None
+        print("Soubor neni")
+
+    return render(response, "main/HisNbl.html", {"df":df})
