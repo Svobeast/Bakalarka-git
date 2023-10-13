@@ -10,9 +10,14 @@
 <body>
     <div class="topbar">
         <span>Stáhni si data</span>
-        <a href="/">Úvod</a>
-
+        <a href="/">Úvodní stránka</a>
     </div>
+
+    <div class="nadpis">
+        {%block nadpis%}
+        {%endblock%}
+    </div>
+
     <div class="tabulka">
         {% block tabulka %}
         <table>

@@ -3,7 +3,7 @@ from django import forms
 
 
 class Vyber(forms.Form):
-    moznosti = [("Aknbl", "NBL - aktuální tabulka"),
+    moznosti = [("Aknbl", "NBL - Aktuální tabulka"),
                 ("HisNbl", "NBL - Historická tabulka"),
                 ("pocasiP", "Počasí - Písek"),
                 ("AkPocasi", "Aktuální počasí")                

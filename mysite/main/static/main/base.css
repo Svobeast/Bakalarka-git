@@ -18,10 +18,6 @@ body{
     color: azure;
 }
 
-.topbar span{
-    
-}
-
 .topbar a{
     color: azure;
     float: right;
@@ -36,4 +32,13 @@ body{
 
 .tabulka{
     margin-top: 50px;
+}
+
+table, th, td{
+    border: 1px solid;
+}
+
+table{
+    border-collapse: collapse;
+    margin-top: 70px;
 }
