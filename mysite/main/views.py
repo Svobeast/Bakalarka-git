@@ -6,6 +6,7 @@ import os
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime
+import pytz
 
 
 # Create your views here.
@@ -64,7 +65,8 @@ def AkPocasi(response):
         
         #pridavani do daneho filu
         with open("main/scraping/AkPocasi.csv", "a", encoding="utf-8") as file:
-            cas_temp = datetime.now()
+            tz = pytz.timezone("Europe/Prague")
+            cas_temp = datetime.now(tz)
             cas = cas_temp.strftime("%H:%M")
             den = cas_temp.strftime("%d.%m.%Y")
             mesto = soup.find(name="h1", class_="mb-0").text.strip()
