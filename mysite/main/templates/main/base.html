@@ -8,10 +8,11 @@
 </head>
 <body>
     <div class="topbar">
-        
+        <span>Stáhni si data</span>
+        <a href="/">Úvod</a>
 
     </div>
-    <div>
+    <div class="tabulka">
         {% block tabulka %}
         <table>
             <thead>
@@ -41,7 +42,7 @@
         </table>
         {% endblock %}
     </div>
-    <div>
+    <div class="other">
         {%block content%}
         {%endblock%}
     </div>

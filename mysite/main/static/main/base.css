@@ -1,3 +1,39 @@
-body{background-color: khaki;
+body{
+    background-color: darkgray;
+    max-width: 500px;
+    margin: auto;
+    
+}
 
-    }
+.topbar{
+    background-color:black;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    z-index: 1;
+    top:0;
+    left: 0;
+    text-align: center;
+    font-size: 30px;
+    color: azure;
+}
+
+.topbar span{
+    
+}
+
+.topbar a{
+    color: azure;
+    float: right;
+    margin-right: 20px;
+    padding: 10px;
+    padding-bottom: 5px;
+}
+.topbar a:hover {
+    background-color: azure;
+    color: black;
+  }
+
+.tabulka{
+    margin-top: 50px;
+}
