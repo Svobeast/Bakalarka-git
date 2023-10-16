@@ -23,22 +23,6 @@ def home(response):
         form = Vyber()
     return render(response, 'main/home.html', {"form":form})
 
-def pocasiP(response):
-    current_directory = os.getcwd()
-    print(current_directory)
-    if os.path.isfile("main/scraping/pocasi.xlsx"):
-        try:
-            df = pd.read_excel("main/scraping/pocasi.xlsx")
-            print("1")
-        except Exception as e:
-            # Handle any other exceptions that may occur while reading the Excel file
-            df = None
-            print(e)
-    else:
-        # Handle the case where the file doesn't exist
-        df = None
-        print("3")
-    return render(response, "main/pocasiP.html", {"df":df})
 
 def AkPocasi(response):
     stranky = ["https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/blatna-15/",
@@ -61,14 +45,14 @@ def AkPocasi(response):
                "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/zlata-koruna-1769/",
                "https://www.in-pocasi.cz/predpoved-pocasi/cz/jihocesky/zabovresky-1724/"]
     #vytvoreni noveho filu
-    existuje = os.path.exists("main/scraping/AkPocasi.csv")
+    existuje = os.path.exists("main/static/main/AkPocasi.csv")
     print(existuje)
     print(os.getcwd())
     if existuje == False:
-        with open("main/scraping/AkPocasi.csv", "w", encoding="utf-8") as nove:
+        with open("main/static/main/AkPocasi.csv", "w", encoding="utf-8") as nove:
             nove.write("Den, Čas, Město, Teplota, Pocitová teplota, Vlhkost\n")
     else:
-        with open("main/scraping/AkPocasi.csv", "w", encoding="utf-8") as smaz:
+        with open("main/static/main/AkPocasi.csv", "w", encoding="utf-8") as smaz:
             smaz.write("Den, Čas, Město, Teplota, Pocitová teplota, Vlhkost\n")
     #for projeti kazde stranky
     for i in range(0, len(stranky)):
@@ -78,7 +62,7 @@ def AkPocasi(response):
         #scrapovani stranek
         
         #pridavani do daneho filu
-        with open("main/scraping/AkPocasi.csv", "a", encoding="utf-8") as file:
+        with open("main/static/main/AkPocasi.csv", "a", encoding="utf-8") as file:
             tz = pytz.timezone("Europe/Prague")
             cas_temp = datetime.now(tz)
             cas = cas_temp.strftime("%H:%M")
@@ -93,14 +77,14 @@ def AkPocasi(response):
             data = f"{den}, {cas}, {mesto}, {teplota}, {pocit}, {vlhkost}" + "\n"
             file.write(data)
     #vytvoreni Excel souboru
-    DoE = pd.read_csv("main/scraping/AkPocasi.csv")
-    DoE.to_excel("main/scraping/AkPocasi.xlsx", "Aktuální počasí", index=False)
+    DoE = pd.read_csv("main/static/main/AkPocasi.csv")
+    DoE.to_excel("main/static/main/AkPocasi.xlsx", "Aktuální počasí", index=False)
 
     slozka = os.getcwd()
     print(slozka)
-    if os.path.isfile("main/scraping/AkPocasi.xlsx"):
+    if os.path.isfile("main/static/main/AkPocasi.xlsx"):
         try:
-            df = pd.read_excel("main/scraping/AkPocasi.xlsx")
+            df = pd.read_excel("main/static/main/AkPocasi.xlsx")
             print("1")
         except Exception as e:
             # Handle any other exceptions that may occur while reading the Excel file
@@ -111,7 +95,12 @@ def AkPocasi(response):
         df = None
         print("3")
 
-    return render(response, "main/AkPocasi.html", {"df":df})
+    odkazy = [
+            ("CSV",'main/AkPocasi.csv'),
+            ("EXCEL",'main/AkPocasi.xlsx')
+            ]
+
+    return render(response, "main/AkPocasi.html", {"df":df, "odkazy":odkazy})
 
 def Aknbl(response):
     zadost = requests.get("https://nbl.basketball/tabulka")
@@ -119,7 +108,10 @@ def Aknbl(response):
 
     soup = BeautifulSoup(web, "html.parser")
 
-    with open("main/scraping/Aknbl.csv", "w", encoding="utf-8") as new_file:
+    
+    
+    
+    with open("main/static/main/Aknbl.csv", "w", encoding="utf-8") as new_file:
         hlavicka = soup.find_all("table")[0].find("tr").get_text(",", strip=True) #získání hlavičky - prvni tabulka na strance a jeji prvni tr
         hlavicka = hlavicka.replace(",posledních 5 zápasů,Odkaz na graf","")
         new_file.write(str(hlavicka))
@@ -133,12 +125,12 @@ def Aknbl(response):
             new_file.write("\n")
             new_file.write(str(obsah))
 
-    DoE = pd.read_csv("main/scraping/Aknbl.csv")
-    DoE.to_excel("main/scraping/Aknbl.xlsx", "Aktuální tabulka NBL", index=False)
+    DoE = pd.read_csv("main/static/main/Aknbl.csv")
+    DoE.to_excel("main/static/main/Aknbl.xlsx", "Aktuální tabulka NBL", index=False)
 
-    if os.path.isfile("main/scraping/Aknbl.xlsx"):
+    if os.path.isfile("main/static/main/Aknbl.xlsx"):
         try:
-            df = pd.read_excel("main/scraping/Aknbl.xlsx")
+            df = pd.read_excel("main/static/main/Aknbl.xlsx")
         except Exception as e:
             # Handle any other exceptions that may occur while reading the Excel file
             df = None
@@ -148,7 +140,13 @@ def Aknbl(response):
         df = None
         print("Soubor neni")
 
-    return render(response, "main/Aknbl.html", {"df":df})
+    odkazy = [
+            ("CSV",'main/Aknbl.csv'),
+            ("EXCEL",'main/Aknbl.xlsx')
+            ]
+    
+
+    return render(response, "main/test.html", {"df":df, "odkazy":odkazy})
 
 def HisNbl(response):
     zadost = requests.get("https://nbl.basketball/tabulka")
@@ -156,7 +154,7 @@ def HisNbl(response):
 
     soup = BeautifulSoup(web, "html.parser")
 
-    with open("main/scraping/HisNbl.csv", "w", encoding="utf-8") as new_file:
+    with open("main/static/main/HisNbl.csv", "w", encoding="utf-8") as new_file:
         hlavicka = soup.find_all("table")[1].find("tr").get_text(",", strip=True) #získání hlavičky - druha tabulka na strance a jeji prvni tr
         hlavicka = hlavicka.replace(",Odkaz na graf","")
         new_file.write(str(hlavicka))
@@ -168,12 +166,12 @@ def HisNbl(response):
             new_file.write("\n")
             new_file.write(str(obsah))
 
-    DoE = pd.read_csv("main/scraping/HisNbl.csv")
-    DoE.to_excel("main/scraping/HisNbl.xlsx", "Historická tabulka NBL", index=False)
+    DoE = pd.read_csv("main/static/main/HisNbl.csv")
+    DoE.to_excel("main/static/main/HisNbl.xlsx", "Historická tabulka NBL", index=False)
 
-    if os.path.isfile("main/scraping/HisNbl.xlsx"):
+    if os.path.isfile("main/static/main/HisNbl.xlsx"):
         try:
-            df = pd.read_excel("main/scraping/HisNbl.xlsx")
+            df = pd.read_excel("main/static/main/HisNbl.xlsx")
         except Exception as e:
             # Handle any other exceptions that may occur while reading the Excel file
             df = None
@@ -183,4 +181,11 @@ def HisNbl(response):
         df = None
         print("Soubor neni")
 
-    return render(response, "main/HisNbl.html", {"df":df})
+    odkazy = [
+            ("CSV",'main/HisNbl.csv'),
+            ("EXCEL",'main/HisNbl.xlsx')
+            ]
+
+    return render(response, "main/HisNbl.html", {"df":df, "odkazy":odkazy})
+
+

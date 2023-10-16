@@ -48,6 +48,16 @@
         </table>
         {% endblock %}
     </div>
+    <div class="stahnout">
+        {%block stahnout%}
+        <a href="{% static odkazy.0.1 %}" download>
+            <button type="button">Stahnout CSV</button>
+        </a>
+        <a href="{% static odkazy.1.1 %}" download>
+            <button type="button">Stahnout XLSX</button>
+        </a>
+        {%endblock%}
+    </div>
     <div class="other">
         {%block content%}
         {%endblock%}
