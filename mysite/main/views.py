@@ -146,7 +146,7 @@ def Aknbl(response):
             ]
     
 
-    return render(response, "main/test.html", {"df":df, "odkazy":odkazy})
+    return render(response, "main/Aknbl.html", {"df":df, "odkazy":odkazy})
 
 def HisNbl(response):
     zadost = requests.get("https://nbl.basketball/tabulka")
