@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-5v1a^$n@)&elqr%%m=0$$$)$44a)*@v!sqpd@s*&^34y)zx7!=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["139.162.203.250", "127.0.0.1", "160.217.96.20"] #1 linode server, 2 localhost
+ALLOWED_HOSTS = ["139.162.203.250", "127.0.0.1", "django.pf.jcu.cz"] #1 linode server, 2 localhost, 3 skolni
 
 
 # Application definition
@@ -116,11 +117,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
-    BASE_DIR / "main/static",
-    "/var/www/static/",
+    os.path.join(BASE_DIR, "main/static/main"),
 ]
 
 # Default primary key field type
